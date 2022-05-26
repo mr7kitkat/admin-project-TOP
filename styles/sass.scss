@@ -1,0 +1,218 @@
+// Global
+
+// Colors
+$clrBlue: #1992D4;
+$clrYellow:#F0B429;
+$clrBlack: #000000;
+$clrGray: #636363;
+$clrTempIcon: #113154;
+$clrTempAvatar: #983545;
+$clrLtGray:#E2E8F0;
+$clrWhite: #FFF;
+
+// Font
+$family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+$fsize: 1rem;
+$bold: bold;
+
+// Dimensions
+$h: 100%;
+$w: 100%;
+$space: 1rem;
+
+
+// Mixins / functions
+@mixin roundBorder {
+    border-radius: 50%;
+}
+
+@mixin gridTemp($cols: auto, $rows: auto, $gap: 0) {
+    grid-template-columns: $cols;
+    grid-template-rows: $rows;
+    gap: $gap;
+}
+
+@mixin flexing($justify: center, $align: center, $direction: row) {
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+}
+
+// Universal classes
+.grid {
+    display: grid;
+}
+
+.flex {
+    display: flex;
+}
+
+.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+}
+
+.padding {
+    padding: $space;
+}
+
+// Test
+.icon {
+    height: 30px;
+    width: 30px;
+    background-color: $clrYellow;
+    @include roundBorder();
+}
+
+.avatar {
+    height: 50px;
+    width: 50px;
+    background-color: $clrTempAvatar;
+    @include roundBorder();
+}
+
+.whitebg {
+    background-color: #FFF;
+}
+
+
+// Styles
+* {
+    box-sizing: border-box;
+}
+
+body {
+    @extend .grid;
+    @include gridTemp($cols:2fr 10fr);
+    background-color: $clrLtGray;
+    max-width: 100%;
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+    font-family: $family;
+}
+
+nav {
+    height: 100%;
+    padding: 0 $space;
+    background-color: $clrBlue;
+    color: $clrWhite;
+
+    p {
+        margin: 0rem;
+        font-weight: $bold;
+    }
+
+    .containor {
+        @extend .sticky;
+        @extend .flex;
+        @include flexing(space-between, flex-start, column);
+        top: 0;
+    }
+
+    .menu {
+        margin-top: 1.2rem;
+    }
+
+    .nav-item {
+        @extend .flex;
+        @include flexing(flex-start, center);
+        margin: 0.6rem auto;
+    }
+
+    .icon {
+        @extend .whitebg;
+        margin-right: 0.5rem;
+    }
+}
+
+
+main {
+    @extend .grid;
+    @include gridTemp($rows: 2fr 10fr);
+
+    .summary {
+        margin: 0.2rem auto;
+        font-weight: 500;
+        color: $clrGray;
+    }
+
+    .title {
+        font-size: $fsize * 1.1;
+        margin-bottom: 0;
+    }
+
+    .header {
+        @extend .whitebg;
+        box-shadow: 1px 1px 10px $clrGray;
+        @extend .padding;
+        @extend .sticky;
+        top: 0;
+    }
+
+    .main {
+        @extend .grid;
+        @include gridTemp(3fr 1fr, 1fr, 1rem);
+    }
+
+    .side-panel {
+        margin: 1rem;
+        margin-left: -0.5rem;
+    }
+
+    .projects-area {
+        @extend .padding;     
+    }
+
+    .projects {
+        @extend .grid;
+        @include gridTemp(repeat(2,1fr), repeat(3,1fr), 1.5rem);
+
+        .project {
+            @extend .whitebg;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-left: 0.5rem solid $clrYellow;
+        }
+
+        .actions {
+            float: right;
+            width: 40%;
+            @extend .flex;
+            @include flexing(space-evenly, center);
+        }
+
+        .summary {
+            font-size: $fsize;
+        }
+
+    }
+
+    .section-heading {
+        font-size: $fsize * 1.3;
+    }
+
+    .accouncements, .trendings {
+        @extend .whitebg;
+        border-radius: 0.5rem;
+        @extend .padding;
+
+        .title{
+            margin-top: $space;
+        }
+
+        :first-child .title {
+            margin-top: 0;
+        }
+
+        .summary {
+            font-size: $fsize * 0.75;
+            
+        }
+    }
+
+    .announcement:not(.announcement:last-child) {
+        border-bottom: 1px solid $clrGray;
+        padding-bottom: $space  ;
+    }
+}
