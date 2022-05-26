@@ -92,6 +92,10 @@ body {
     font-family: $family;
 }
 
+p {
+    margin: 0rem;
+}
+
 nav {
     height: 100%;
     padding: 0 $space;
@@ -99,7 +103,6 @@ nav {
     color: $clrWhite;
 
     p {
-        margin: 0rem;
         font-weight: $bold;
     }
 
@@ -128,6 +131,83 @@ nav {
 
 
 main {
+    .header {
+        @extend .whitebg;
+        box-shadow: 1px 1px 10px $clrGray;
+        @extend .padding;
+        @extend .sticky;
+        top: 0;
+
+        @extend .grid;
+        @include gridTemp(4fr 2fr, 1fr 1fr, 0);
+    }
+
+    .h {
+        @extend .flex;
+        @include flexing(space-evenly, center);
+        padding: 0.5rem;
+    }
+
+    .search, .user-profile {
+        justify-content: flex-start;
+
+        .icon {
+            margin: 0 $space;
+        }
+    }
+
+    .user-mini-profile {
+        justify-self: end;
+        padding: 0 2rem;
+
+        * {
+            margin: 0 0.7rem;
+        }
+    }
+
+    .name {
+        font-size: $fsize * 1.2;
+        font-weight: $bold;
+    }
+
+    .hello-user {
+        font-weight: $bold;
+        .greet {
+            font-size: $fsize * 0.8;
+        }
+
+        .username {
+            font-size: $fsize * 1.5;
+        }
+    }
+
+    [type="text"] {
+        width: calc(100% - 200px);
+        height: 2rem;
+        border-radius: 2rem;
+        outline: none;
+        border: none;
+        background-color: $clrLtGray;
+        padding: 0 1.5rem;
+    }
+
+
+    .user-actions {
+        button {
+            width: 80px;
+            height: 35px;
+            border-radius: 2rem;
+            border: none;
+            outline: none;
+            background-color: $clrBlue;
+            color: $clrWhite;
+        }
+    }
+
+}
+
+
+main {
     @extend .grid;
     @include gridTemp($rows: 2fr 10fr);
 
@@ -140,14 +220,6 @@ main {
     .title {
         font-size: $fsize * 1.1;
         margin-bottom: 0;
-    }
-
-    .header {
-        @extend .whitebg;
-        box-shadow: 1px 1px 10px $clrGray;
-        @extend .padding;
-        @extend .sticky;
-        top: 0;
     }
 
     .main {
@@ -214,5 +286,32 @@ main {
     .announcement:not(.announcement:last-child) {
         border-bottom: 1px solid $clrGray;
         padding-bottom: $space  ;
+    }
+
+
+    .trending-item{
+        @extend .flex;
+        @include flexing(flex-start, center);
+        padding: $space * 0.4 0;
+        .avatar {
+            $size: 35px;
+            height: $size;
+            width: $size;
+            margin: 0 0.5rem;
+        }
+
+        .user-id {
+            @extend .flex;
+            @include flexing(center, flex-start,column);
+        }
+
+        .user-title {
+            font-weight: 500;
+        }
+
+        .user-subtitle {
+            font-weight: 500;
+            font-size: $fsize * 0.7;
+        }
     }
 }
