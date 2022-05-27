@@ -50,6 +50,7 @@ $space: 1rem;
 .sticky {
     position: -webkit-sticky;
     position: sticky;
+    z-index: 10;
 }
 
 .padding {
@@ -58,17 +59,17 @@ $space: 1rem;
 
 // Test
 .icon {
-    height: 30px;
-    width: 30px;
-    background-color: $clrYellow;
-    @include roundBorder();
+    height: 20px;
+    max-width: 20px;
+    object-fit: cover;
 }
 
 .avatar {
-    height: 50px;
-    width: 50px;
-    background-color: $clrTempAvatar;
+    height: 32px;
+    width: 32px;
     @include roundBorder();
+    object-position: center;
+    object-fit: cover;
 }
 
 .whitebg {
@@ -77,6 +78,18 @@ $space: 1rem;
 
 .hidden{
     display: none;
+}
+
+.show {
+    display: block;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 15;
+    transition: none;
 }
 
 
@@ -94,6 +107,12 @@ body {
     max-width: 1500px;
     margin: 0 auto;
     font-family: $family;
+    scroll-behavior: smooth;
+}
+
+#dashboard-icon {
+    height: 45px;
+    max-width: 100%;
 }
 
 p {
@@ -108,7 +127,12 @@ p {
     background-color: $clrBlue;
     height: 50px;
     width: 50px;
+    padding: 0.2rem;
     border-radius: 0.5rem;
+    background-image: url(../images/icons/menu.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 30px;
 }
 
 nav {
@@ -146,7 +170,6 @@ nav {
     }
 
     .icon {
-        @extend .whitebg;
         margin-right: 0.5rem;
     }
 }
@@ -154,6 +177,12 @@ nav {
 
 
 main {
+    .big {
+        height: 50px;
+        width: 50px;
+    }
+    
+
     .header {
         @extend .whitebg;
         box-shadow: 1px 1px 10px $clrGray;
@@ -164,6 +193,8 @@ main {
 
         @extend .grid;
         @include gridTemp(4fr 2fr, 1fr 1fr, 0);
+
+        
     }
 
     .h {
@@ -184,6 +215,10 @@ main {
 
     .search {
         padding-left: 60px;
+
+        .icon {
+            filter: invert(100%)
+        }
     }
 
     .user-mini-profile {
@@ -192,6 +227,10 @@ main {
 
         * {
             margin: 0 0.7rem;
+        }
+
+        .icon {
+            filter: invert(100%)
         }
     }
 
@@ -202,6 +241,7 @@ main {
 
     .hello-user {
         font-weight: $bold;
+        margin-left: 15px;
         .greet {
             font-size: $fsize * 0.8;
         }
@@ -275,6 +315,10 @@ main {
             border-radius: 0.5rem;
             padding: 0.5rem 1rem;
             border-left: 0.5rem solid $clrYellow;
+
+            .icon {
+                filter: invert(100%)
+            }
         }
 
         .actions {
@@ -362,8 +406,9 @@ main {
 
     
     nav {
+        width: 100vw;
+        height: 100vh;
         display: none;
-
     }
 
     
@@ -427,7 +472,7 @@ main {
 
 
         .projects {
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr;
 
             .project {
                 @extend .whitebg;
@@ -465,4 +510,12 @@ main {
 
 
 
+}
+
+
+
+@media screen and (max-width: 768px) {
+    main .projects {
+        grid-template-columns: 1fr;
+    }
 }
