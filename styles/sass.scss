@@ -82,14 +82,8 @@ $space: 1rem;
 
 .show {
     display: block;
-    position: sticky;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
     overflow: hidden;
     z-index: 15;
-    transition: none;
 }
 
 
@@ -137,7 +131,6 @@ p {
 
 nav {
     overflow: hidden;
-    transition: 1s all linear;
     position: relative;
     height: 100%;
     padding: 0 $space;
@@ -271,6 +264,7 @@ main {
             outline: none;
             background-color: $clrBlue;
             color: $clrWhite;
+            margin: 0 0.25rem;
         }
     }
 
@@ -313,7 +307,7 @@ main {
         .project {
             @extend .whitebg;
             border-radius: 0.5rem;
-            padding: 0.5rem 1rem;
+            padding: 1rem;
             border-left: 0.5rem solid $clrYellow;
 
             .icon {
@@ -326,6 +320,7 @@ main {
             width: 40%;
             @extend .flex;
             @include flexing(space-evenly, center);
+            padding: 0.5rem;
         }
 
         .summary {
@@ -398,6 +393,7 @@ main {
 @media screen and (max-width: 1000px) {
     .toggle {
         display: block;
+        top: 5px;
     }
 
     body {
@@ -406,9 +402,14 @@ main {
 
     
     nav {
-        width: 100vw;
-        height: 100vh;
+        position: absolute;
+        top: 50px;
+        left: 15px;
+        max-width: 300px;
+        width: 100%;
+        height: 75vh;
         display: none;
+        z-index: 20;
     }
 
     
@@ -517,5 +518,14 @@ main {
 @media screen and (max-width: 768px) {
     main .projects {
         grid-template-columns: 1fr;
+    }
+
+    .toggle {
+        top: 20px;
+    }
+    
+    nav {
+        top: 70px;
+        
     }
 }
